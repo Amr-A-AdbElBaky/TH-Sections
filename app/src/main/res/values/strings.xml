@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Thmanyah</string>
+    <string name="app_name" translatable="false">Thmanyah</string>
+    <string name="msg_loading">Loading…</string>
+    <string name="label_retry">Retry</string>
+    <string name="label_hour_qualifier">%01dh</string>
+    <string name="label_minute_qualifier">%01dm</string>
+    <string name="label_episode">episode</string>
+    <string name="label_episodes">episodes</string>
+    <string name="label_search_sections">Search sections...</string>
 </resources>
