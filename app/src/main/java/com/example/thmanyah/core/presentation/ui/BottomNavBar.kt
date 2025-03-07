@@ -1,8 +1,11 @@
 package com.example.thmanyah.core.presentation.ui
 
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalAbsoluteTonalElevation
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -42,7 +45,12 @@ fun BottomNavBar(
                         tint = if (index == selectedIndex) Color.White else Color.Gray
                     )
                 },
-                label = null
+                label = null,
+                colors = androidx.compose.material3.NavigationBarItemDefaults
+                    .colors(
+                        selectedIconColor =  Color.White,
+                        indicatorColor = MaterialTheme.colorScheme.surfaceColorAtElevation(LocalAbsoluteTonalElevation.current)
+                    )
             )
         }
     }
