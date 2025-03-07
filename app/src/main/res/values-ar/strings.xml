@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="msg_loading">جاري التحميل…</string>
+    <string name="label_retry">إعادة المحاولة</string>
+    <string name="label_hour_qualifier">%01dس</string>
+    <string name="label_minute_qualifier">%01dد</string>
+    <string name="label_episode">حلقة</string>
+    <string name="label_episodes">حلقات</string>
+    <string name="label_search_sections">Search sections...</string>
+</resources>
