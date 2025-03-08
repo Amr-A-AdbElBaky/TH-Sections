@@ -3,6 +3,7 @@ package com.example.thmanyah.features.sections.presentation.ui
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -28,7 +29,7 @@ class SectionComponentsTest {
             SectionHeaderView(
                 modifier = Modifier.fillMaxWidth(),
                 title = "Test Header",
-                titleColor = R.color.yellow
+                titleColor = Color.Yellow
             )
         }
 
@@ -44,7 +45,7 @@ class SectionComponentsTest {
                 modifier = Modifier.fillMaxWidth(),
                 title = "Test Header",
                 subtitle = "Test Subtitle",
-                titleColor = R.color.yellow
+                titleColor = Color.Yellow
             )
         }
 
@@ -165,7 +166,7 @@ class SectionComponentsTest {
             type = type,
             contentType = contentType,
             order = 1,
-            titleColor = R.color.yellow,
+            titleColor = Color.Yellow,
             content = content
         )
     }
