@@ -45,6 +45,21 @@ android {
         compose = true
         buildConfig = true
     }
+    packaging {
+        resources {
+            excludes.addAll(listOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md",
+                "META-INF/AL2.0",
+                "META-INF/LGPL2.1",
+                "META-INF/DEPENDENCIES",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/NOTICE",
+                "META-INF/NOTICE.txt",
+            ))
+        }
+    }
 }
 
 dependencies {
@@ -53,9 +68,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
-/*    implementation(libs.material3)
-    implementation(libs.androidx.material3.icons.core)
-    implementation(libs.androidx.material3.icons.extended)*/
+    /*    implementation(libs.material3)
+        implementation(libs.androidx.material3.icons.core)
+        implementation(libs.androidx.material3.icons.extended)*/
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
@@ -70,12 +85,39 @@ dependencies {
 
 
 
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
+
     debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 
     testImplementation(libs.bundles.testing.group)
+
+    // Compose Testing
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
+    // AndroidX Test
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.rules)
+
+    // Hilt Testing
+    androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.google.dagger.hilt.compiler)
+
+    androidTestImplementation(libs.mockwebserver)
+
+    // Mockito for Android
+    // androidTestImplementation(libs.mockito.android)
+    testImplementation(libs.mockito.kotlin)
+    androidTestImplementation(libs.mockito.android)
+
+
+
+
+
+    // Truth assertion library
+    androidTestImplementation(libs.truth)
+
+
 }
