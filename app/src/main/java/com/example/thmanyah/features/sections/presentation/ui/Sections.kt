@@ -17,6 +17,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -31,7 +32,7 @@ import com.example.thmanyah.features.sections.domain.entity.ContentType
 import com.example.thmanyah.features.sections.domain.entity.SectionType
 import com.example.thmanyah.features.sections.presentation.uimodel.SectionContentUiModel
 import com.example.thmanyah.features.sections.presentation.uimodel.SectionUiModel
-import com.example.thmanyah.ui.theme.colorDarkBlue
+
 
 @Composable
 fun SectionContainerItem(
@@ -153,7 +154,7 @@ fun QueueSection(
             QueueItem(
                 modifier = Modifier
                     .width(itemWidth)
-                    .background(colorDarkBlue, RoundedCornerShape(12.dp))
+                    .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(12.dp))
                     .padding(12.dp)
                     .clickable(onClick = {
                         onItemClick(item.id, section.contentType)
@@ -190,7 +191,6 @@ fun TwoLinesGridSection(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(Color.Black)
             .padding(vertical = 8.dp)
     ) {
         HorizontalPager(

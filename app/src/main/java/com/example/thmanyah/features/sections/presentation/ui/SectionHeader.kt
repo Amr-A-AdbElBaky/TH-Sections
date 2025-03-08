@@ -25,7 +25,7 @@ fun SectionHeaderView(
     modifier: Modifier,
     title: String,
     subtitle: String? = null,
-    titleColor: Int,
+    titleColor: Color,
 ) {
     Row(
         modifier = modifier,
@@ -36,7 +36,7 @@ fun SectionHeaderView(
         // Main title
         Text(
             text = title,
-            color = colorResource(titleColor),
+            color =  titleColor,
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Start
