@@ -19,8 +19,8 @@ import kotlinx.coroutines.launch
 fun DefaultSnackBar(
     modifier: Modifier,
     msg: String,
-    background: Color = SnackbarDefaults.color,
-    textColor: Color = MaterialTheme.colorScheme.surface
+    background: Color = Color.Red,
+    textColor: Color = Color.White
 ) {
     val snackState = remember { SnackbarHostState() }
     val snackScope = rememberCoroutineScope()
