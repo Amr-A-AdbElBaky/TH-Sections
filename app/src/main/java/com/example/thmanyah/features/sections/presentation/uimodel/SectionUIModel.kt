@@ -1,10 +1,13 @@
 package com.example.thmanyah.features.sections.presentation.uimodel
 
 import androidx.annotation.ColorRes
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.graphics.Color
 import com.example.thmanyah.R
 import com.example.thmanyah.base.presentation.uimodel.UiModel
 import com.example.thmanyah.features.sections.domain.entity.ContentType
 import com.example.thmanyah.features.sections.domain.entity.SectionType
+import com.example.thmanyah.ui.theme.ThemeColors
 
 data class SectionsListUiModel(
     val sections: List<SectionUiModel> = emptyList(),
@@ -24,7 +27,7 @@ data class SectionUiModel(
     val type: SectionType = SectionType.UNKNOWN,
     val contentType: ContentType = ContentType.UNKNOWN,
     val order: Int = 0,
-    @ColorRes val titleColor: Int = R.color.white,
+    val titleColor: Color = ThemeColors.get.onBackground,
     val content: List<SectionContentUiModel> = emptyList()
 )
 

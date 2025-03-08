@@ -20,12 +20,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun DefaultToolBar(
+    title: String = "عبدالرحمن",
     modifier: Modifier = Modifier
         .fillMaxWidth()
         .padding(horizontal = 16.dp, vertical = 8.dp)
@@ -39,7 +41,7 @@ fun DefaultToolBar(
         Icon(
             imageVector = Icons.Default.Notifications,
             contentDescription = "Notifications",
-            tint = Color.White,
+            tint = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.size(24.dp)
         )
 
@@ -48,8 +50,8 @@ fun DefaultToolBar(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "عبدالرحمن",
-                color = Color.White,
+                text = title,
+                color = MaterialTheme.colorScheme.onBackground,
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Bold
             )
@@ -60,6 +62,7 @@ fun DefaultToolBar(
                 modifier = Modifier
                     .size(32.dp)
                     .clip(CircleShape),
+                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground),
                 contentScale = ContentScale.Crop
             )
         }

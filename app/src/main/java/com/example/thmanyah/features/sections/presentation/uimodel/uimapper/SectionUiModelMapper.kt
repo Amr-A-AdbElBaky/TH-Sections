@@ -8,13 +8,15 @@ import com.example.thmanyah.features.sections.presentation.uimodel.SectionConten
 import com.example.thmanyah.features.sections.presentation.uimodel.SectionContentUiState
 import com.example.thmanyah.features.sections.presentation.uimodel.SectionUiModel
 import com.example.thmanyah.features.sections.presentation.uimodel.SectionUiState
+import com.example.thmanyah.ui.theme.LightSecondary
+import com.example.thmanyah.ui.theme.ThemeColors
 
 fun SectionUiState.toSectionUiModel(context: Context) = SectionUiModel(
     title = name,
     type = type,
     contentType = contentType,
     order = order,
-    titleColor = if(type == SectionType.SQUARE) R.color.yellow else R.color.white,
+    titleColor = if(type == SectionType.SQUARE) LightSecondary else ThemeColors.get.onBackground,
     content = content.map { it.toSectionContentUiModel(context) }
 )
 

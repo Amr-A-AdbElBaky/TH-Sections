@@ -25,8 +25,8 @@ fun TabsView(
         ScrollableTabRow(
             modifier = modifier,
             selectedTabIndex = selectedIndex ?: 0,
-            containerColor = Color.Black,
-            contentColor = Color.White,
+            contentColor = Color.Transparent,
+            containerColor = Color.Transparent,
             indicator = {},
             divider = {}
         ) {

@@ -24,6 +24,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,6 +40,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.thmanyah.core.presentation.ui.DefaultImage
 import com.example.thmanyah.features.sections.presentation.uimodel.SectionContentUiModel
+import com.example.thmanyah.ui.theme.GrayText
+import com.example.thmanyah.ui.theme.ThemeColors
 import com.example.thmanyah.ui.theme.colorBlackSemiTransparent
 import com.example.thmanyah.ui.theme.colorBlackSemiTransparent10
 import com.example.thmanyah.ui.theme.colorBlackSemiTransparent25
@@ -72,8 +75,7 @@ fun SquareItem(
                             .fillMaxWidth()
                             .align(Alignment.BottomCenter),
                         progress = { it.toFloat() },
-                        trackColor = Color.Gray,
-                        color = Color.Red
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
             }
@@ -81,7 +83,7 @@ fun SquareItem(
 
         Text(
             text = itemContent.name,
-            color = Color.White,
+            color = MaterialTheme.colorScheme.onBackground,
             fontSize = 14.sp,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
@@ -92,7 +94,7 @@ fun SquareItem(
             Spacer(modifier = Modifier.width(4.dp))
             Text(
                 text = itemContent.episodeCountLabel,
-                color = Color.Gray,
+                color = GrayText,
                 fontSize = 12.sp,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
@@ -166,7 +168,7 @@ fun QueueItem(
             episode.authorName?.let {
                 Text(
                     text = it,
-                    color = Color.Gray,
+                    color = GrayText,
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -177,7 +179,7 @@ fun QueueItem(
             episode.releaseDate?.let {
                 Text(
                     text = it,
-                    color = Color.Gray,
+                    color = GrayText,
                     fontSize = 12.sp
                 )
             }
@@ -186,7 +188,7 @@ fun QueueItem(
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = episode.description,
-            color = Color.White,
+            color = MaterialTheme.colorScheme.onBackground,
             fontSize = 13.sp,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
@@ -197,7 +199,7 @@ fun QueueItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
-                    color = Color.Black, RoundedCornerShape(12.dp)
+                    color = ThemeColors.get.tertiary, RoundedCornerShape(12.dp)
                 )
                 .padding(12.dp)
         ) {
@@ -209,25 +211,23 @@ fun QueueItem(
                     .clip(RoundedCornerShape(6.dp))
             )
             Column(
-                modifier = Modifier.weight(1f),
-                horizontalAlignment = Alignment.End
+                modifier = Modifier.weight(1f)
+                    .padding(horizontal = 8.dp),
             ) {
                 Text(
                     text = episode.name,
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.onBackground,
                     fontSize = 14.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    textAlign = TextAlign.End
                 )
 
                 Text(
                     text = episode.duration,
-                    color = Color.Gray,
+                    color = GrayText,
                     fontSize = 12.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    textAlign = TextAlign.End
                 )
             }
 
@@ -269,7 +269,7 @@ fun TwoLinesGridItem(
             item.releaseDate?.let {
                 Text(
                     text = it,
-                    color = Color.Gray,
+                    color = GrayText,
                     fontSize = 12.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -279,7 +279,7 @@ fun TwoLinesGridItem(
 
             Text(
                 text = item.name,
-                color = Color.White,
+                color = MaterialTheme.colorScheme.onBackground,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 maxLines = 2,
@@ -289,9 +289,9 @@ fun TwoLinesGridItem(
             Spacer(modifier = Modifier.height(4.dp))
 
             PlayIconWithDuration(
-                modifier = Modifier
+                modifier =  Modifier
                     .background(
-                        color = colorDarkBlue,
+                        color = MaterialTheme.colorScheme.surfaceVariant,
                         shape = RoundedCornerShape(16.dp)
                     )
                     .padding(horizontal = 6.dp, vertical = 2.dp)
@@ -314,7 +314,7 @@ fun TwoLinesGridItem(
                 Icon(
                     imageVector = Icons.Default.MoreVert,
                     contentDescription = "More Options",
-                    tint = Color.White,
+                    tint = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.size(20.dp)
                 )
             }
@@ -329,7 +329,7 @@ fun TwoLinesGridItem(
                 Icon(
                     imageVector = Icons.Default.List,
                     contentDescription = "Playlist",
-                    tint = Color.White,
+                    tint = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.size(20.dp)
                 )
             }
@@ -343,7 +343,7 @@ fun TwoLinesGridItem(
 fun PlayIconWithDuration(
     modifier: Modifier = Modifier
         .background(
-            color = colorDarkBlue,
+            color = MaterialTheme.colorScheme.surfaceVariant,
             shape = RoundedCornerShape(16.dp)
         )
         .padding(horizontal = 6.dp, vertical = 2.dp),
@@ -358,12 +358,12 @@ fun PlayIconWithDuration(
             modifier = Modifier.size(18.dp),
             imageVector = Icons.Default.PlayArrow,
             contentDescription = "Play",
-            tint = Color.White
+            tint = MaterialTheme.colorScheme.onBackground
         )
         Text(
             text = durationLabel,
             fontSize = 11.sp,
-            color = Color.White
+            color = MaterialTheme.colorScheme.onBackground
         )
     }
 
