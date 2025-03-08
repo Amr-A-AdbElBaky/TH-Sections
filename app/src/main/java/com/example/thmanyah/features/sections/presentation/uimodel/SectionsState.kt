@@ -10,7 +10,6 @@ data class SectionsListUiState(
     val headersCategories :List<String> = listOf("الكتب", "المقالات الصوتية", "البودكاست"), // todo  get from Api if possible
     val sections: List<SectionUiState> = emptyList(),
     val error: String? = null,
-    val snackError: String? = null,
     val selectedCategory:String? = headersCategories.first(), // todo should be assigned after fetching from api
     val hasNextPage: Boolean = false,
     val isRefreshing: Boolean = false,

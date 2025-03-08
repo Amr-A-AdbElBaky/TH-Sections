@@ -3,6 +3,7 @@ package com.example.thmanyah.features.sections.presentation.viewmodel
 import android.content.Context
 import androidx.lifecycle.viewModelScope
 import com.example.thmanyah.base.presentation.viewmodel.BaseViewModel
+import com.example.thmanyah.core.extensions.getMappedMessage
 import com.example.thmanyah.features.sections.domain.interactors.GetHomeSectionsUseCase
 import com.example.thmanyah.features.sections.domain.interactors.HasSectionsNextPageUseCase
 import com.example.thmanyah.features.sections.domain.interactors.SearchForSectionsUseCase
@@ -83,15 +84,14 @@ class SectionsViewModel @Inject constructor(
         ) {
             getHomeSectionsUseCase.invoke(isFirstPage)
                 .onStart {
-                    updateState { it.copy(isLoading = true, error = null, snackError = null) }
+                    updateState { it.copy(isLoading = true, error = null) }
                 }
                 .catch { exception ->
                     updateState {
                         it.copy(
                             isLoading = false,
                             isRefreshing = false,
-                            error = if (isFirstPage) exception.message else null,
-                            snackError = if (!isFirstPage) exception.message else null
+                            error =  exception.getMappedMessage(),
                         )
                     }
                 }
@@ -113,10 +113,10 @@ class SectionsViewModel @Inject constructor(
     private fun refreshHomeSections() {
         getHomeSectionsUseCase.invoke(true)
             .onStart {
-                updateState { it.copy(isRefreshing = true, snackError = null) }
+                updateState { it.copy(isRefreshing = true, error = null) }
             }
             .catch { exception ->
-                updateState { it.copy(isRefreshing = false, snackError = exception.message) }
+                updateState { it.copy(isRefreshing = false, error = exception.getMappedMessage()) }
             }
             .onEach { list ->
                 updateState { state ->
@@ -139,7 +139,8 @@ class SectionsViewModel @Inject constructor(
             showEmptyView = state.sections.isEmpty() && !state.isLoading,
             selectedCategoryIndex = state.headersCategories.indexOf(state.selectedCategory),
             sections = uiSections,
-            error = state.error,
+            error = if (state.sections.isEmpty()) state.error else null,
+            snackError = if (state.sections.isNotEmpty())state.error else null,
             headersCategories = state.headersCategories
         )
     }
@@ -155,14 +156,14 @@ class SectionsViewModel @Inject constructor(
         currentSearchJob?.cancel()
         currentSearchJob = searchForSectionsUseCase.invoke(query)
                 .onStart {
-                    updateState { it.copy(isLoading = true, error = null, snackError = null) }
+                    updateState { it.copy(isLoading = true, error = null) }
                 }
                 .catch { exception ->
                     updateState {
                         it.copy(
                             isLoading = false,
                             isRefreshing = false,
-                            error= exception.message,
+                            error= exception.getMappedMessage(),
                         )
                     }
                 }

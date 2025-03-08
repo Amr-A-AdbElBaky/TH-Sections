@@ -12,7 +12,6 @@ data class SectionsListUiModel(
     val selectedCategoryIndex: Int? = null,
     val error: String? = null,
     val snackError: String? = null,
-    val isRefreshing: Boolean = false,
     val showFullLoading: Boolean = false,
     val showFooterLoading: Boolean = false,
     val showPullToRefresh: Boolean = false,

@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.example.thmanyah.features.sections.presentation.ui
 
 import androidx.compose.foundation.background
@@ -12,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.thmanyah.core.extensions.OnBottomReached
+import com.example.thmanyah.core.presentation.ui.DefaultPullToRefreshBox
 import com.example.thmanyah.core.presentation.ui.StateView
 import com.example.thmanyah.core.presentation.ui.TabsView
 import com.example.thmanyah.features.sections.domain.entity.ContentType
@@ -55,10 +59,14 @@ fun SectionsScreen(
         }
     }
 
-    Box(
+    DefaultPullToRefreshBox(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.colorScheme.background),
+        isRefreshing = homeUiModel?.showPullToRefresh == true,
+        onRefresh = {
+            viewModel.processIntent(SectionsIntent.RefreshHomeSections)
+        }
     ) {
         Column(
             modifier = Modifier
@@ -114,6 +122,7 @@ fun SectionsScreen(
         StateView(Modifier.fillMaxSize(),
             isLoading = homeUiModel?.showFullLoading,
             error = homeUiModel?.error,
+            snackError = homeUiModel?.snackError,
             onAction = {
                 viewModel.processIntent(SectionsIntent.LoadHomeSections)
             })
